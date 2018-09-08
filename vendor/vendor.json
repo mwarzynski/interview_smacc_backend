@@ -1,0 +1,83 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "DUX4pOK9NKSAzC6RRXniLviyByA=",
+			"path": "github.com/armon/go-metrics",
+			"revision": "3c58d8115a78a6879e5df75ae900846768d36895",
+			"revisionTime": "2018-07-13T14:52:31Z"
+		},
+		{
+			"checksumSHA1": "DriMqHJDIx3WqJIEhMPrG23pE4Q=",
+			"path": "github.com/caarlos0/env",
+			"revision": "bc122c26dc2d72f6904a9e0cb940ca508660067c",
+			"revisionTime": "2018-07-02T19:56:40Z"
+		},
+		{
+			"checksumSHA1": "s6RbQQsB4b/zT2KcjgpjAYeFm+g=",
+			"path": "github.com/go-chi/chi",
+			"revision": "b5294d10673813fac8558e7f47242bc9e61b4c25",
+			"revisionTime": "2018-08-27T20:34:43Z"
+		},
+		{
+			"checksumSHA1": "1Xlo4sCR+zeOzjslXc/NAOmkgXg=",
+			"path": "github.com/go-chi/chi/middleware",
+			"revision": "b5294d10673813fac8558e7f47242bc9e61b4c25",
+			"revisionTime": "2018-08-27T20:34:43Z"
+		},
+		{
+			"checksumSHA1": "mCCQqlVo0CPUr29LXH4Oe4Ww3JA=",
+			"path": "github.com/hashicorp/go-immutable-radix",
+			"revision": "27df80928bb34bb1b0d6d0e01b9e679902e7a6b5",
+			"revisionTime": "2018-08-30T03:32:45Z"
+		},
+		{
+			"checksumSHA1": "NvkV52M5EFd0kT4U+9A2Eu/kKr8=",
+			"path": "github.com/hashicorp/golang-lru/simplelru",
+			"revision": "20f1fb78b0740ba8c3cb143a61e86ba5c8669768",
+			"revisionTime": "2018-08-30T03:29:55Z"
+		},
+		{
+			"checksumSHA1": "Qx3d1CBxsMVnXj0Wnt+NOoyiHWE=",
+			"path": "github.com/mwarzynski/go-boilterplate",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "7rcBN11qLTVxrLDgAtjZzWg2di4=",
+			"path": "github.com/mwarzynski/go-boilterplate/transport",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "ljd3FhYRJ91cLZz3wsH9BQQ2JbA=",
+			"path": "github.com/pkg/errors",
+			"revision": "816c9085562cd7ee03e7f8188a1cfd942858cded",
+			"revisionTime": "2018-03-11T21:45:15Z"
+		},
+		{
+			"checksumSHA1": "tICW9WtACqNYYw14mOulb1GJaSs=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "3791101e143bf0f32515ac23e831475684f61229",
+			"revisionTime": "2018-09-04T20:21:35Z"
+		},
+		{
+			"checksumSHA1": "BGm8lKZmvJbf/YOJLeL1rw2WVjA=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
+			"revisionTime": "2018-08-31T22:38:59Z"
+		},
+		{
+			"checksumSHA1": "/fyGSTHooK5Ez7G597cRNmI5/UM=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "ebe1bf3edb3325c393447059974de898d5133eb8",
+			"revisionTime": "2018-09-05T07:36:18Z"
+		},
+		{
+			"checksumSHA1": "DssjltU28TeBlMe16egT15lW0VA=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "ebe1bf3edb3325c393447059974de898d5133eb8",
+			"revisionTime": "2018-09-05T07:36:18Z"
+		}
+	],
+	"rootPath": "github.com/mwarzynski/go-boilterplate"
+}
