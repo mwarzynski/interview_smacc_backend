@@ -29,6 +29,10 @@ func NewSendGridProvider(host, apiKey, apiUser string, doer HTTPDoer) Provider {
 	}
 }
 
+func (p *sendGridProvider) Name() string {
+	return "sendgrid"
+}
+
 func (p *sendGridProvider) Send(ctx context.Context, args SendArgs) error {
 	sendURL := url.URL{
 		Scheme:  "https",

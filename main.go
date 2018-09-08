@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"crypto/tls"
 	"log"
 	"net"
 	"net/http"
@@ -11,6 +10,7 @@ import (
 	"time"
 
 	"github.com/caarlos0/env"
+	"github.com/mwarzynski/smacc-backend/mail"
 	"github.com/mwarzynski/smacc-backend/metrics"
 	"github.com/mwarzynski/smacc-backend/transport"
 	"github.com/sirupsen/logrus"
@@ -40,34 +40,72 @@ func main() {
 	// metrics
 	metricsService := metrics.NewDummy()
 	if config.MetricsEnabled {
-		metricsService, err = metrics.New(config.MetricsHost, config.MetricsPort, config.MetricsPrefix)
+		metricsService, err = metrics.New(
+			config.MetricsHost,
+			config.MetricsPort,
+			config.MetricsPrefix,
+		)
 	}
 	if err != nil {
-		l.WithField("tags", []string{"metrics"}).Fatalf("creating service: %v", err)
+		l.WithField(
+			"tags",
+			[]string{"metrics"},
+		).Fatalf("creating service: %v", err)
 	}
 
-	// default internal HTTP client
-	defaultHTTPTimeout := time.Duration(10) * time.Second
-	defaultInternalClient := http.Client{
-		Timeout: defaultHTTPTimeout,
+	// HTTP client
+	// timeout should be relatively low because we want to failover
+	// to other providers
+	httpTimeout := time.Duration(1) * time.Second
+	httpDoer := &http.Client{
+		Timeout: httpTimeout,
 		Transport: &http.Transport{
 			Proxy: nil,
 			DialContext: (&net.Dialer{
-				Timeout:   defaultHTTPTimeout,
-				KeepAlive: defaultHTTPTimeout,
+				Timeout:   httpTimeout,
+				KeepAlive: httpTimeout,
 			}).DialContext,
-			MaxIdleConns:          100,
-			TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
+			ResponseHeaderTimeout: httpTimeout,
+			MaxIdleConnsPerHost:   100,
 			TLSHandshakeTimeout:   10 * time.Second,
 			IdleConnTimeout:       90 * time.Second,
-			ExpectContinueTimeout: 1 * time.Second,
 		},
 	}
+
+	mailgunProvider := mail.NewMailGunProvider(
+		config.MailGunHost,
+		config.MailGunAPIKey,
+		config.MailGunDomainName,
+		httpDoer,
+	)
+	mailgunProvider = mail.ProviderWithMetrics(
+		mailgunProvider,
+		metricsService,
+	)
+
+	sendgridProvider := mail.NewSendGridProvider(
+		config.SendGridHost,
+		config.SendGridAPIKey,
+		config.SendGridAPIUser,
+		httpDoer,
+	)
+	sendgridProvider = mail.ProviderWithMetrics(
+		sendgridProvider,
+		metricsService,
+	)
+
+	// initialize mail service
+	mailService := mail.NewService(
+		[]mail.Provider{
+			mailgunProvider,
+			sendgridProvider,
+		},
+		l.WithField("tags", []string{"mail", "service"}))
 
 	// router
 	r := transport.Init(
 		appCtx,
-		&defaultInternalClient,
+		mailService,
 		metricsService,
 		l,
 	)

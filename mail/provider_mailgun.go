@@ -32,6 +32,10 @@ func NewMailGunProvider(host, apiKey, domain string, doer HTTPDoer) Provider {
 	}
 }
 
+func (p *mailGunProvider) Name() string {
+	return "mailgun"
+}
+
 func (p *mailGunProvider) Send(ctx context.Context, args SendArgs) error {
 	sendURL := url.URL{
 		Scheme:  "https",

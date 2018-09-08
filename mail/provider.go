@@ -12,5 +12,6 @@ type SendArgs struct {
 
 // Provider is an abstraction for mail provider.
 type Provider interface {
+	Name() string
 	Send(ctx context.Context, args SendArgs) error
 }

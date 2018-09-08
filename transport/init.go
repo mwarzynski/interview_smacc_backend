@@ -2,13 +2,13 @@ package transport
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 
 	gometrics "github.com/armon/go-metrics"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
+	"github.com/mwarzynski/smacc-backend/mail"
 	"github.com/sirupsen/logrus"
 )
 
@@ -20,7 +20,7 @@ type HTTPDoer interface {
 // Init constructs http.Handler for the main path.
 func Init(
 	appCtx context.Context,
-	internalHTTPDoer HTTPDoer,
+	mailService *mail.Service,
 	metricsService *gometrics.Metrics,
 	l logrus.FieldLogger,
 ) http.Handler {
@@ -43,14 +43,8 @@ func Init(
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
+	r.With(metricsMiddleware("mail-send", metricsService)).Post("/mail/send", Mail(mailService, l))
 	r.Route("/v1", func(r chi.Router) {
-		r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
-			w.Header().Set("Access-Control-Allow-Origin", "*/*")
-			w.Header().Set("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"action": "pong",
-			})
-		})
 	})
 
 	r.Get("/readiness", func(w http.ResponseWriter, r *http.Request) {

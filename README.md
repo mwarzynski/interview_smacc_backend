@@ -16,3 +16,8 @@ API that is capable of sending emails using many providers. The failover functio
 ### Frontend
 
 Single-page app that contains a form for sending emails.
+
+
+## Implementation
+
+The application is stateless and therefore scalable.

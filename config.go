@@ -6,7 +6,7 @@ type Config struct {
 	Listen                   string `env:"LISTEN" envDefault:":8080"`
 	HTTPProxy                string `env:"HTTP_PROXY" envDefault:""`
 	DoerTimeoutSeconds       int    `env:"DOER_TIMEOUT_SECONDS" envDefault:"10"`
-	HTTPServerTimeoutSeconds int    `env:"SERVER_TIMEOUT_SECONDS" envDefault:"60"`
+	HTTPServerTimeoutSeconds int    `env:"SERVER_TIMEOUT_SECONDS" envDefault:"30"`
 
 	LogLevel string `env:"LOG_LEVEL" envDefault:"INFO"`
 
