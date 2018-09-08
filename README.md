@@ -1,23 +1,22 @@
 # SMACC backend
 
-My experience in Go: ~ 2 years.
+My experience in Go: 2-3 years.
 
-Technically every single line of code (apart from vendor/) was written by myself.
-I used the go-boilerplate created by myself a couple of months ago.
+Technically, every single line of code (apart from vendor/) was written by myself.
 
 # Challenge
 
-## Description
+API that is capable of sending emails using specified providers. The failover functionality is a requirement.
+I am not sure how advanced should be the failover part. I will code the easiest solution.
 
-### Backend
+## Aspects
 
-API that is capable of sending emails using many providers. The failover functionality is a requirement.
+- Security: are there any obvious vulnerability?
+    - **There is no way to validate the 'from' field.** Therefore anyone may send mails from you or me.
+    - At this point, I keep API keys at the config. I intend to push the code to private repository, so it won't be public. Let's assume the secret keys are just the 'dev' ones. The production keys are supposed to be set via environment variables for the container.
+- Does the README contain information on how to run it: `CGO_ENABLED=0 go build -o server && ./server`
 
-### Frontend
+### Bonus point:
 
-Single-page app that contains a form for sending emails.
-
-
-## Implementation
-
-The application is stateless and therefore scalable.
+- Scalability: **Yes.** Application is stateless and should scale well.
+- Production-readiness: I tried to create the production-ready application. The logging and metrics are covered (somehow). Building a microcontainer is also added (`docker build ./ -t smacc-backend`).
