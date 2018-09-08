@@ -33,7 +33,7 @@ func (p *sendGridProvider) Name() string {
 	return "sendgrid"
 }
 
-func (p *sendGridProvider) Send(ctx context.Context, args SendArgs) error {
+func (p *sendGridProvider) Send(ctx context.Context, message Message) error {
 	sendURL := url.URL{
 		Scheme:  "https",
 		Host:    p.host,
@@ -43,10 +43,10 @@ func (p *sendGridProvider) Send(ctx context.Context, args SendArgs) error {
 	form := url.Values{
 		"api_user": []string{p.apiUser},
 		"api_key":  []string{p.apiKey},
-		"from":     []string{args.From},
-		"to":       []string{args.To},
-		"subject":  []string{args.Subject},
-		"text":     []string{args.Message},
+		"from":     []string{message.From},
+		"to":       []string{message.To},
+		"subject":  []string{message.Subject},
+		"text":     []string{message.Text},
 	}
 
 	req, err := http.NewRequest(http.MethodPost, sendURL.String(), strings.NewReader(form.Encode()))

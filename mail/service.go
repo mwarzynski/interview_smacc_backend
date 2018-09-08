@@ -23,9 +23,9 @@ func NewService(providers []Provider, l logrus.FieldLogger) *Service {
 }
 
 // Send sends the mail message using given mail providers.
-func (s *Service) Send(ctx context.Context, args SendArgs) (sent bool) {
+func (s *Service) Send(ctx context.Context, message Message) (sent bool) {
 	for _, provider := range s.providers {
-		err := provider.Send(ctx, args)
+		err := provider.Send(ctx, message)
 		if err == nil {
 			sent = true
 			break

@@ -9,6 +9,12 @@
 			"revisionTime": "2018-07-13T14:52:31Z"
 		},
 		{
+			"checksumSHA1": "DPqLvieZrTUU3UXJpgfxnC3d+Es=",
+			"path": "github.com/badoux/checkmail",
+			"revision": "0755fe2dc241caebab64327c352006712f6a55c4",
+			"revisionTime": "2018-04-30T15:31:08Z"
+		},
+		{
 			"checksumSHA1": "DriMqHJDIx3WqJIEhMPrG23pE4Q=",
 			"path": "github.com/caarlos0/env",
 			"revision": "bc122c26dc2d72f6904a9e0cb940ca508660067c",
@@ -79,5 +85,5 @@
 			"revisionTime": "2018-09-05T07:36:18Z"
 		}
 	],
-	"rootPath": "github.com/mwarzynski/go-boilterplate"
+	"rootPath": "github.com/mwarzynski/smacc-backend"
 }

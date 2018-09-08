@@ -23,9 +23,9 @@ func ProviderWithMetrics(p Provider, m *metrics.Metrics) Provider {
 	}
 }
 
-func (pm *providerWithMetrics) Send(ctx context.Context, args SendArgs) error {
+func (pm *providerWithMetrics) Send(ctx context.Context, message Message) error {
 	defer pm.m.MeasureSince([]string{"mail", "provider", pm.Provider.Name()}, time.Now())
-	err := pm.Provider.Send(ctx, args)
+	err := pm.Provider.Send(ctx, message)
 	if err != nil {
 		pm.m.IncrCounter([]string{"errors", fmt.Sprintf("mail-provider-%s", pm.Provider.Name())}, 1)
 	}

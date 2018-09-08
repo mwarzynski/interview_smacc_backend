@@ -29,16 +29,20 @@ func Mail(mailService *mail.Service, l logrus.FieldLogger) http.HandlerFunc {
 			return
 		}
 
-		var args mail.SendArgs
-		if err := json.Unmarshal(body, &args); err != nil {
+		var message mail.Message
+		if err := json.Unmarshal(body, &message); err != nil {
 			err = errors.Wrap(err, "body must be a valid JSON")
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
+		if err := message.Validate(); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
 
-		sent := mailService.Send(r.Context(), args)
+		sent := mailService.Send(r.Context(), message)
 		if !sent {
-			http.Error(w, "couldn't send the mail", http.StatusInternalServerError)
+			http.Error(w, "couldn't send the message", http.StatusInternalServerError)
 			return
 		}
 
