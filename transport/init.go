@@ -43,8 +43,8 @@ func Init(
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
-	r.With(metricsMiddleware("mail-send", metricsService)).Post("/mail/send", Mail(mailService, l))
 	r.Route("/v1", func(r chi.Router) {
+		r.With(metricsMiddleware("mail-send", metricsService)).Post("/mail/send", Mail(mailService, l))
 	})
 
 	r.Get("/readiness", func(w http.ResponseWriter, r *http.Request) {

@@ -56,7 +56,7 @@ func main() {
 	// HTTP client
 	// timeout should be relatively low because we want to failover
 	// to other providers
-	httpTimeout := time.Duration(1) * time.Second
+	httpTimeout := time.Duration(5) * time.Second
 	httpDoer := &http.Client{
 		Timeout: httpTimeout,
 		Transport: &http.Transport{
@@ -86,7 +86,6 @@ func main() {
 	sendgridProvider := mail.NewSendGridProvider(
 		config.SendGridHost,
 		config.SendGridAPIKey,
-		config.SendGridAPIUser,
 		httpDoer,
 	)
 	sendgridProvider = mail.ProviderWithMetrics(
@@ -97,8 +96,8 @@ func main() {
 	// initialize mail service
 	mailService := mail.NewService(
 		[]mail.Provider{
-			mailgunProvider,
 			sendgridProvider,
+			mailgunProvider,
 		},
 		l.WithField("tags", []string{"mail", "service"}))
 

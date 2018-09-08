@@ -19,7 +19,6 @@ type Config struct {
 	MailGunAPIKey     string `env:"MAIL_MAILGUN_API_KEY" envDefault:""`
 	MailGunDomainName string `env:"MAIL_MAILGUN_DOMAIN_NAME" envDefault:""`
 
-	SendGridHost    string `env:"MAIL_SENDGRID_HOST" envDefault:"api.sendgrid.com"`
-	SendGridAPIKey  string `env:"MAIL_SENDGRID_API_KEY" envDefault:""`
-	SendGridAPIUser string `env:"MAIL_SENDGRID_API_USER" envDefault:""`
+	SendGridHost   string `env:"MAIL_SENDGRID_HOST" envDefault:"api.sendgrid.com"`
+	SendGridAPIKey string `env:"MAIL_SENDGRID_API_KEY" envDefault:""`
 }

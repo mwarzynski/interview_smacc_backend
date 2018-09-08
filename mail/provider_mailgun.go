@@ -38,9 +38,9 @@ func (p *mailGunProvider) Name() string {
 
 func (p *mailGunProvider) Send(ctx context.Context, message Message) error {
 	sendURL := url.URL{
-		Scheme:  "https",
-		Host:    p.host,
-		RawPath: fmt.Sprintf("/v3/%s/messages", p.domain),
+		Scheme: "https",
+		Host:   p.host,
+		Path:   fmt.Sprintf("/v3/%s/messages", p.domain),
 	}
 	form := url.Values{
 		"from":    []string{message.From},
