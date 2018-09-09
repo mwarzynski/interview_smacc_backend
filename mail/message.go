@@ -24,8 +24,5 @@ func (m *Message) Validate() error {
 	if m.Subject == "" {
 		return errors.New("'subject' must not be empty")
 	}
-	if m.Text == "" {
-		return errors.New("'text' must not be empty")
-	}
 	return nil
 }
