@@ -20,3 +20,8 @@ I am not sure how advanced should be the failover part. I will code the easiest 
 
 - Scalability: **Yes.** Application is stateless and should scale well.
 - Production-readiness: I tried to create the production-ready application. The logging and metrics are covered (somehow). Building a microcontainer is also added (`docker build ./ -t smacc-backend`).
+
+## Documentation
+
+At this moment there is no documentation of the REST API, but I think it's *nice to have*.
+In case I will have more free time.. maybe I will add it.
