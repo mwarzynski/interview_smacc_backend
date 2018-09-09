@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"log"
 	"net"
 	"net/http"
@@ -68,6 +69,7 @@ func main() {
 			ResponseHeaderTimeout: httpTimeout,
 			MaxIdleConnsPerHost:   100,
 			TLSHandshakeTimeout:   10 * time.Second,
+			TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
 			IdleConnTimeout:       90 * time.Second,
 		},
 	}
