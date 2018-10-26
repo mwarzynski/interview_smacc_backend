@@ -13,7 +13,7 @@ I am not sure how advanced should be the failover part. I will code the easiest 
 
 - Security: are there any obvious vulnerability?
     - **There is no way to validate the 'from' field.** Therefore anyone may send mails from you or me.
-    - At this point, I keep API keys at the config. I intend to push the code to private repository, so it won't be public. Let's assume the secret keys are just the 'dev' ones. The production keys are supposed to be set via environment variables for the container.
+    - At this point, I keep API keys at the config. I intend to push the code to private repository, so it won't be public. Let's assume the secret keys are just the 'dev' ones. The production keys are supposed to be set via environment variables for the container. (Since this repository is public, I edited the git commits as to remove secret credentials from config.go)
 - Does the README contain information on how to run it: `CGO_ENABLED=0 go build -o server && ./server`
 
 ### Bonus point:
