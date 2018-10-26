@@ -33,6 +33,12 @@
 			"revisionTime": "2018-08-27T20:34:43Z"
 		},
 		{
+			"checksumSHA1": "n9ry/OHiteTTjZOeJHTrEwRSnms=",
+			"path": "github.com/go-chi/cors",
+			"revision": "07727c846d14299758e54a275dd8c81353c01960",
+			"revisionTime": "2018-08-16T15:23:45Z"
+		},
+		{
 			"checksumSHA1": "mCCQqlVo0CPUr29LXH4Oe4Ww3JA=",
 			"path": "github.com/hashicorp/go-immutable-radix",
 			"revision": "27df80928bb34bb1b0d6d0e01b9e679902e7a6b5",
