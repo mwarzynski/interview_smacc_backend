@@ -58,21 +58,7 @@ func main() {
 	// timeout should be relatively low because we want to failover
 	// to other providers
 	httpTimeout := time.Duration(5) * time.Second
-	httpDoer := &http.Client{
-		Timeout: httpTimeout,
-		Transport: &http.Transport{
-			Proxy: nil,
-			DialContext: (&net.Dialer{
-				Timeout:   httpTimeout,
-				KeepAlive: httpTimeout,
-			}).DialContext,
-			ResponseHeaderTimeout: httpTimeout,
-			MaxIdleConnsPerHost:   100,
-			TLSHandshakeTimeout:   10 * time.Second,
-			TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
-			IdleConnTimeout:       90 * time.Second,
-		},
-	}
+	httpDoer := &http.Client{Timeout: httpTimeout}
 
 	mailgunProvider := mail.NewMailGunProvider(
 		config.MailGunHost,
